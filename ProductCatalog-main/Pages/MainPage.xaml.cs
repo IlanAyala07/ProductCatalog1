@@ -2,23 +2,18 @@
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+        public MainPage() => InitializeComponent();
 
-        public MainPage()
-        {
-            InitializeComponent();
-        }
+        private async void OpenProducts(object sender, EventArgs e) =>
+            await Shell.Current.GoToAsync(nameof(ProductListPage));
 
-        private void OnCounterClicked(object? sender, EventArgs e)
-        {
-            count++;
+        private async void OpenCategories(object sender, EventArgs e) =>
+            await Shell.Current.GoToAsync(nameof(CategoryListPage));
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+        private async void OpenSuppliers(object sender, EventArgs e) =>
+            await Shell.Current.GoToAsync(nameof(SupplierListPage));
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
-        }
+        private async void OpenBrands(object sender, EventArgs e) =>
+            await Shell.Current.GoToAsync(nameof(BrandListPage));
     }
 }

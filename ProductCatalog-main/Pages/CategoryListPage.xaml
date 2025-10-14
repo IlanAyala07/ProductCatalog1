@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProductCatalog.Pages.CategoryListPage"
+             x:Name="Page"
+             Title="Categorías">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Nuevo" Command="{Binding NewCommand}"/>
+        <ToolbarItem Text="Refrescar" Command="{Binding LoadCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <CollectionView ItemsSource="{Binding Items}" Margin="12" SelectionMode="None">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid Padding="8" ColumnDefinitions="*,Auto">
+                    <Label Text="{Binding Name}" />
+                    <HorizontalStackLayout Grid.Column="1" Spacing="8">
+                        <Button Text="Editar"
+                                Command="{Binding BindingContext.EditCommand, Source={x:Reference Page}}"
+                                CommandParameter="{Binding .}"/>
+                        <Button Text="Borrar"
+                                Command="{Binding BindingContext.DeleteCommand, Source={x:Reference Page}}"
+                                CommandParameter="{Binding .}"/>
+                    </HorizontalStackLayout>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>
